@@ -1,0 +1,24 @@
+
+/home/runner/work/exp-multiple-motors-dei/exp-multiple-motors-dei/experiment/simulation/simulation_1/src/js/main.js
+  2:10  warning  'changePower' is defined but never used  no-unused-vars
+
+/home/runner/work/exp-multiple-motors-dei/exp-multiple-motors-dei/experiment/simulation/simulation_2/src/js/main.js
+  2:10  warning  'changePower' is defined but never used  no-unused-vars
+
+/home/runner/work/exp-multiple-motors-dei/exp-multiple-motors-dei/experiment/simulation/simulation_3/src/js/main.js
+   1:10  warning  'changepage' is defined but never used         no-unused-vars
+  11:10  warning  'changeImage' is defined but never used        no-unused-vars
+  23:10  warning  'changeBuzzerImage' is defined but never used  no-unused-vars
+  35:10  warning  'togglePlay' is defined but never used         no-unused-vars
+
+/home/runner/work/exp-multiple-motors-dei/exp-multiple-motors-dei/experiment/simulation/simulation_4/src/js/main.js
+  2:10  warning  'changePower' is defined but never used  no-unused-vars
+
+/home/runner/work/exp-multiple-motors-dei/exp-multiple-motors-dei/experiment/simulation/src/js/main.js
+    2:10  warning  'dispmenu' is defined but never used    no-unused-vars
+   60:10  warning  'myFunction' is defined but never used  no-unused-vars
+   64:10  warning  'prequiz' is defined but never used     no-unused-vars
+  114:10  warning  'postquiz' is defined but never used    no-unused-vars
+
+✖ 11 problems (0 errors, 11 warnings)
+
