@@ -1,1 +1,1 @@
-To simulate interfacing of multiple motors (DC Motor, Servo Motor, and Stepper Motor) with Arduino.
+1. To simulate interfacing of multiple motors (DC Motor, Servo Motor, and Stepper Motor) with Arduino.
