@@ -113,6 +113,7 @@ h1{
   }
   .nofledBoxContainer {
     width: 100%;
+    margin-top: -19px;
     height: 50vh;
     display: flex;
     flex-direction: column;
