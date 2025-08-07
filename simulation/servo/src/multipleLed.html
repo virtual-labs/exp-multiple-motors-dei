@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Virtual IoT Lab DEI</title>
+    <link
+      rel="icon"
+      href="https://www.vlab.co.in/images/logo.jpg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" type="text/css" href="src/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="exp-changer">
+        <div class="exp-changer-heading">
+          <p class="p-head">IOT Virtual Lab</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="navbar">
+      <div class="navbar1">
+        <a href="../../index.html">Home</a>
+      </div>
+      <div class="navbar-heading">Simulation Window</div>
+      <div class="navbar2">
+        <a href="../simulation_1/index.html">Go Back</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="if-vid">
+        <p class="p-head">Interfacing of Arduino with Push button :</p>
+        <div class="interfacing">
+          <img id="ifimg" src="./src/images/potOff.png" alt="interfacing" />
+          <button id="pushbutton" onclick="changeImage();"></button>
+        </div>
+      </div>
+      <div class="separator"></div>
+      <div class="code">
+        <div class="code-head"><p class="p-head">ARDUINO CODE</p></div>
+        <div>
+          <form action="" method="POST">
+            <textarea id="arduinoCode" readonly>
+int sensorValue = 0;
+int outputValue = 0;
+
+void setup()
+{
+  pinMode(A0, INPUT);
+  pinMode(9, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  // read the analog in value:
+  sensorValue = analogRead(A0);
+  // map it to the range of the analog out:
+  outputValue = map(sensorValue, 0, 1023, 0, 255);
+  // change the analog out value:
+  analogWrite(9, outputValue);
+  // print the results to the serial monitor:
+  Serial.print("sensor = ");
+  Serial.print(sensorValue);
+  Serial.print("\t output = ");
+  Serial.println(outputValue);
+  // wait 2 milliseconds before the next loop for the
+  // analog-to-digital converter to settle after the
+  // last reading:
+  delay(2); // Wait for 2 millisecond(s)
+}
+            </textarea>
+          </form>
+        </div>
+        <!-- <div class="startStop"><h2>Start/Stop</h2></div> -->
+      </div>
+    </div>
+    <script type="text/javascript" src="src/js/main.js"></script>
+  </body>
+</html>
