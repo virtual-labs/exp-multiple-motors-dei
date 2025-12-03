@@ -2,71 +2,173 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "Which motor is commonly used for precise control of angular position in Arduino projects?",
+      "question": "What type of signal controls the speed of a DC motor?",
       "answers": {
-        "a": "DC Motor",
-        "b": "Servo Motor",
-        "c": "Stepper Motor",
-        "d": "Brushless DC Motor"
+        "a": "Digital signal",
+        "b": "PWM signal",
+        "c": "Analog input only",
+        "d": "Serial signal"
       },
       "explanations": {
-        "a": "DC Motors are not suitable for precise angular control but for continuous rotation.",
-        "b": "Servo motors are designed for precise control of angular position and are commonly used in Arduino projects.",
-        "c": "Stepper motors provide precise control of steps but are typically used for discrete rotations.",
-        "d": "Brushless DC motors are more efficient but require more complex control mechanisms."
+        "a": "Incorrect: Digital signals cannot control speed smoothly.",
+        "b": "Correct: DC motor speed is controlled using PWM.",
+        "c": "Incorrect: Analog input alone cannot control speed.",
+        "d": "Incorrect: Serial signals do not directly control motor speed."
       },
       "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-      "question": "Which motor requires a motor driver like L298N for controlling direction and speed in an Arduino project?",
+      "question": "Servo motors are generally controlled using which type of signal?",
       "answers": {
-        "a": "DC Motor",
-        "b": "Servo Motor",
-        "c": "Stepper Motor",
-        "d": "All of the above"
+        "a": "Analog signal",
+        "b": "PWM with specific pulse width",
+        "c": "Digital HIGH/LOW",
+        "d": "I2C signal"
       },
       "explanations": {
-        "a": "DC motors require a motor driver like L298N to control direction and speed using PWM.",
-        "b": "Servo motors do not require a motor driver but are controlled by PWM signals.",
-        "c": "Stepper motors often require a driver like ULN2003 or A4988 for controlling steps and direction.",
-        "d": "Not all of these motors require a motor driver like L298N. Servo motors don't require one."
+        "a": "Incorrect: Servos do not use analog voltage control.",
+        "b": "Correct: Servos use PWM with controlled pulse widths.",
+        "c": "Incorrect: A simple HIGH/LOW cannot set angles.",
+        "d": "Incorrect: I2C is not used for regular hobby servos."
       },
-      "correctAnswer": "a",
+      "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-      "question": "What is the primary advantage of using a stepper motor in Arduino projects?",
+      "question": "A stepper motor moves in small fixed ___?",
       "answers": {
-        "a": "Stepper motors are faster than DC motors.",
-        "b": "Stepper motors provide precise control over rotation angle.",
-        "c": "Stepper motors are cheaper than DC motors.",
-        "d": "Stepper motors require less power than DC motors."
+        "a": "Speeds",
+        "b": "Steps",
+        "c": "Rotations",
+        "d": "Cycles"
       },
       "explanations": {
-        "a": "Stepper motors are not necessarily faster but are precise in their rotations.",
-        "b": "The primary advantage of stepper motors is their ability to provide precise control over rotation angle without feedback systems.",
-        "c": "Stepper motors are generally more expensive than DC motors due to their precision.",
-        "d": "Stepper motors tend to consume more power than DC motors due to their stepwise operation."
+        "a": "Incorrect: Stepper motors coordinate steps, not speeds.",
+        "b": "Correct: Steppers move in discrete steps.",
+        "c": "Incorrect: Rotation is divided into many steps.",
+        "d": "Incorrect: Cycles is not the correct term."
       },
       "correctAnswer": "b",
-      "difficulty": "intermediate"
+      "difficulty": "beginner"
     },
     {
-      "question": "In Arduino, how is the direction of a DC motor typically controlled?",
+      "question": "Which Arduino library is used for servo motors?",
       "answers": {
-        "a": "By controlling the PWM signal on the motor pin.",
-        "b": "By switching the motor's power supply.",
-        "c": "By using an H-Bridge or motor driver like L298N.",
-        "d": "By changing the servo position."
+        "a": "Stepper.h",
+        "b": "MotorDriver.h",
+        "c": "Servo.h",
+        "d": "PWMControl.h"
       },
       "explanations": {
-        "a": "PWM controls the speed of the motor, not the direction.",
-        "b": "Switching the power supply does not reliably control the direction of the motor.",
-        "c": "The direction of a DC motor is controlled by switching pins on an H-Bridge or using a motor driver like L298N.",
-        "d": "Servo motors are used for angular positioning, not for controlling DC motor direction."
+        "a": "Incorrect: Stepper.h is for stepper motors.",
+        "b": "Incorrect: Not a standard library.",
+        "c": "Correct: Servo.h is used for servo motors.",
+        "d": "Incorrect: PWMControl.h is not used for servos."
       },
       "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does PWM stand for?",
+      "answers": {
+        "a": "Pulse Width Motor",
+        "b": "Power Wave Modulation",
+        "c": "Pulse Width Modulation",
+        "d": "Periodic Wave Management"
+      },
+      "explanations": {
+        "a": "Incorrect: Not an electrical term.",
+        "b": "Incorrect: Wrong expansion.",
+        "c": "Correct: PWM means Pulse Width Modulation.",
+        "d": "Incorrect: Fabricated term."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "DC motor movement is __-directional by nature.",
+      "answers": {
+        "a": "Bi-directional",
+        "b": "Uni-directional",
+        "c": "Multi-directional",
+        "d": "Non-directional"
+      },
+      "explanations": {
+        "a": "Incorrect: Needs driver to reverse direction.",
+        "b": "Correct: By default, DC motor is uni-directional.",
+        "c": "Incorrect: Not capable of multi-directional movement.",
+        "d": "Incorrect: Motor definitely has direction."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "A stepper motor typically requires how many control pins?",
+      "answers": {
+        "a": "1",
+        "b": "2",
+        "c": "4",
+        "d": "6"
+      },
+      "explanations": {
+        "a": "Incorrect: Too few for stepping control.",
+        "b": "Incorrect: Two pins are not typical.",
+        "c": "Correct: Standard stepper motors use 4 control pins.",
+        "d": "Incorrect: Not commonly used with 6 pins."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which motor is most suitable for precise angular control?",
+      "answers": {
+        "a": "DC motor",
+        "b": "Servo motor",
+        "c": "Brushless motor",
+        "d": "Universal motor"
+      },
+      "explanations": {
+        "a": "Incorrect: DC motors are not angle-precise.",
+        "b": "Correct: Servos give accurate angle positions.",
+        "c": "Incorrect: Brushless motors are used for speed, not angle.",
+        "d": "Incorrect: Universal motors are not for precise positioning."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which motor moves in discrete steps?",
+      "answers": {
+        "a": "DC motor",
+        "b": "Servo motor",
+        "c": "Stepper motor",
+        "d": "Vibration motor"
+      },
+      "explanations": {
+        "a": "Incorrect: DC motors rotate continuously.",
+        "b": "Incorrect: Servos rotate to defined angles, not steps.",
+        "c": "Correct: Stepper motors move in fixed steps.",
+        "d": "Incorrect: Vibration motors do not step."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which motor is commonly used in robotic arms?",
+      "answers": {
+        "a": "Vibration motor",
+        "b": "Stepper motor",
+        "c": "DC cooling motor",
+        "d": "Induction motor"
+      },
+      "explanations": {
+        "a": "Incorrect: Not used for robotics.",
+        "b": "Correct: Stepper motors provide precision required for robotic joints.",
+        "c": "Incorrect: Cooling motors cannot provide controlled motion.",
+        "d": "Incorrect: Induction motors are for industrial machinery."
+      },
+      "correctAnswer": "b",
       "difficulty": "beginner"
     }
   ]

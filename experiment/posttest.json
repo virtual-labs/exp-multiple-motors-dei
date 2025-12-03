@@ -2,72 +2,174 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "Which motor is commonly used for precise control of angular position in Arduino projects?",
+      "question": "Why is PWM required for DC motor speed control?",
       "answers": {
-        "a": "DC Motor",
-        "b": "Servo Motor",
-        "c": "Stepper Motor",
-        "d": "Brushless DC Motor"
+        "a": "It increases motor voltage directly.",
+        "b": "It controls average power delivered to the motor.",
+        "c": "It switches motor direction automatically.",
+        "d": "It prevents motor overheating only."
       },
       "explanations": {
-        "a": "DC Motors are typically used for continuous rotation, not for precise angular positioning.",
-        "b": "Servo motors are designed specifically for precise control of angular position and are commonly used in Arduino projects.",
-        "c": "Stepper motors offer precise stepwise movement, but servo motors are better suited for angular position control.",
-        "d": "Brushless DC motors are more efficient but require complex control mechanisms, unlike servo motors."
+        "a": "Incorrect: PWM does not increase voltage.",
+        "b": "Correct: PWM adjusts the average voltage and power, controlling speed.",
+        "c": "Incorrect: Direction control needs an H-bridge.",
+        "d": "Incorrect: Overheating is not PWM's main purpose."
       },
       "correctAnswer": "b",
-      "difficulty": "beginner"
+      "difficulty": "intermediate"
     },
     {
-      "question": "What is the purpose of using a motor driver like L298N with DC motors in Arduino projects?",
+      "question": "What is the working principle of a servo motor?",
       "answers": {
-        "a": "To increase the voltage supplied to the motor.",
-        "b": "To control the speed and direction of the motor.",
-        "c": "To reduce the power consumption of the motor.",
-        "d": "To amplify the PWM signal for faster motor operation."
+        "a": "It rotates continuously at constant speed.",
+        "b": "It moves to a specific angle based on pulse width.",
+        "c": "It vibrates using high frequency signals.",
+        "d": "It uses analog voltage for angle control."
       },
       "explanations": {
-        "a": "Motor drivers like L298N are not used to increase the voltage; they are used to control the motor's direction and speed.",
-        "b": "L298N allows you to control both the direction and speed of a DC motor by using digital signals and PWM.",
-        "c": "Motor drivers like L298N don't reduce the power consumption but rather regulate the motor's operation.",
-        "d": "Motor drivers like L298N are designed to control the motor's direction and speed, not specifically to amplify the PWM signal."
+        "a": "Incorrect: Continuous rotation occurs only in modified servos.",
+        "b": "Correct: Servos use PWM pulse width to set position.",
+        "c": "Incorrect: This describes vibration motors.",
+        "d": "Incorrect: Servos use PWM signals, not analog voltage."
       },
       "correctAnswer": "b",
-      "difficulty": "beginner"
+      "difficulty": "intermediate"
     },
     {
-      "question": "Which motor is ideal for applications requiring precise stepwise rotation, such as in CNC machines or 3D printers?",
+      "question": "How does a stepper motor maintain precise control?",
       "answers": {
-        "a": "DC Motor",
-        "b": "Servo Motor",
-        "c": "Stepper Motor",
-        "d": "Brushless DC Motor"
+        "a": "By rotating freely without constraints.",
+        "b": "By using continuous analog voltage.",
+        "c": "By moving in fixed incremental steps.",
+        "d": "By adjusting pulses based on sound waves."
       },
       "explanations": {
-        "a": "DC motors do not provide precise stepwise rotation and are generally used for continuous motion.",
-        "b": "Servo motors are good for angular positioning but do not offer stepwise rotation like stepper motors.",
-        "c": "Stepper motors are ideal for precise stepwise rotation and are commonly used in applications like CNC machines and 3D printers.",
-        "d": "Brushless DC motors are more efficient but not suitable for stepwise movement like stepper motors."
+        "a": "Incorrect: Free rotation is for DC motors.",
+        "b": "Incorrect: Steppers use digital pulses.",
+        "c": "Correct: Stepper motors move in controlled steps for precision.",
+        "d": "Incorrect: Sound is unrelated to motor control."
       },
       "correctAnswer": "c",
       "difficulty": "intermediate"
     },
     {
-      "question": "In Arduino, how is the direction of a DC motor typically controlled?",
+      "question": "Which example correctly matches a motor with a real-life IoT application?",
       "answers": {
-        "a": "By controlling the PWM signal on the motor pin.",
-        "b": "By switching the motor's power supply.",
-        "c": "By using an H-Bridge or motor driver like L298N.",
-        "d": "By changing the servo position."
+        "a": "DC motor – smart curtains",
+        "b": "Servo motor – vibration alerts",
+        "c": "Stepper motor – table fan",
+        "d": "Vibration motor – robotic arm joints"
       },
       "explanations": {
-        "a": "PWM controls the speed of the motor, not the direction.",
-        "b": "Switching the power supply doesn't reliably control the direction of the motor.",
-        "c": "The direction of a DC motor is controlled by switching the input pins of an H-Bridge or motor driver like L298N.",
-        "d": "Servo motors are used for angular positioning, not for controlling DC motor direction."
+        "a": "Correct: DC motors are commonly used for smart curtain automation.",
+        "b": "Incorrect: Servos are for angle control, not vibration.",
+        "c": "Incorrect: Fans use DC/AC motors, not steppers.",
+        "d": "Incorrect: Robotic joints require stepper/servo motors."
       },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What happens if a wrong pulse sequence is given to a stepper motor?",
+      "answers": {
+        "a": "It rotates smoothly but faster.",
+        "b": "It may skip steps or rotate incorrectly.",
+        "c": "It stops working permanently.",
+        "d": "It behaves like a DC motor."
+      },
+      "explanations": {
+        "a": "Incorrect: Wrong sequences cause irregular motion.",
+        "b": "Correct: It may lose position accuracy or move in the wrong direction.",
+        "c": "Incorrect: It doesn't get permanently damaged normally.",
+        "d": "Incorrect: Stepper motors never behave like DC motors."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "How do DC motor and servo motor differ in control?",
+      "answers": {
+        "a": "Both use angle-based control.",
+        "b": "DC motor uses PWM for speed, servo uses PWM for position.",
+        "c": "Both use serial data for control.",
+        "d": "Servo motors require no PWM."
+      },
+      "explanations": {
+        "a": "Incorrect: DC motors do not use angle control.",
+        "b": "Correct: DC = speed control, Servo = precise angle control.",
+        "c": "Incorrect: Serial is not used for basic motor driving.",
+        "d": "Incorrect: Servo motors depend entirely on PWM pulses."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Why can’t a typical servo motor rotate full 360°?",
+      "answers": {
+        "a": "Because its body is too small.",
+        "b": "Because an internal stop limits rotation.",
+        "c": "Because it has only two wires.",
+        "d": "Because it uses a battery."
+      },
+      "explanations": {
+        "a": "Incorrect: Size has no influence on rotation limit.",
+        "b": "Correct: Internal gears and stops restrict movement to 0–180°.",
+        "c": "Incorrect: Servos actually have 3 wires.",
+        "d": "Incorrect: Power source is irrelevant."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "How can the direction of a DC motor be reversed in simulation?",
+      "answers": {
+        "a": "By changing PWM duty cycle only.",
+        "b": "By reversing power supply polarity via H-bridge.",
+        "c": "By reducing motor speed to zero.",
+        "d": "By enabling analogRead pins."
+      },
+      "explanations": {
+        "a": "Incorrect: PWM only controls speed, not direction.",
+        "b": "Correct: H-bridge (e.g., L298N) flips polarity to reverse direction.",
+        "c": "Incorrect: Speed zero does not reverse rotation.",
+        "d": "Incorrect: analogRead has no relation to direction."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Why are stepper motors commonly used in CNC machines?",
+      "answers": {
+        "a": "Because they rotate freely at high speeds.",
+        "b": "Because they provide precise step-by-step movement.",
+        "c": "Because they require no driver circuits.",
+        "d": "Because they consume very low power."
+      },
+      "explanations": {
+        "a": "Incorrect: CNC requires precision, not free rotation.",
+        "b": "Correct: Stepper motors allow exact positioning needed in CNC.",
+        "c": "Incorrect: CNC machines always use driver circuits.",
+        "d": "Incorrect: Steppers actually consume more power during holding."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the role of driver circuits in motor control?",
+      "answers": {
+        "a": "They reduce motor voltage to zero.",
+        "b": "They deliver high current safely from microcontrollers.",
+        "c": "They replace PWM functions entirely.",
+        "d": "They measure motor temperature only."
+      },
+      "explanations": {
+        "a": "Incorrect: Drivers do not suppress voltage unnecessarily.",
+        "b": "Correct: Drivers allow motors to draw high current without damaging Arduino.",
+        "c": "Incorrect: PWM still comes from Arduino.",
+        "d": "Incorrect: Temperature sensing is not their job."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
     }
   ]
 }
