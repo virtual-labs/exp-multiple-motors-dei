@@ -1,4 +1,4 @@
-## Procedure
+### Procedure for the experiment is as follows:
 
 1. Open the experiment in the virtual lab for interfacing multiple motors.  
    The Arduino board and all motors (DC motor, servo motor, and stepper motor) are already connected in the workspace.
