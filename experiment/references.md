@@ -1,4 +1,4 @@
-## References
+### References
 
 1. Arduino Official Documentation, "Control DC Motor with Arduino", Available at: https://www.arduino.cc/en/Tutorial
 2. Michael Margolis, "Arduino Cookbook", O’Reilly Media, 2011.
