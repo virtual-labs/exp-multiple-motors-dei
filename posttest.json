@@ -1,0 +1,115 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. Why is PWM required for DC motor speed control?",
+      "answers": {
+        "a": "It increases motor voltage directly.",
+        "b": "It controls average power delivered to the motor.",
+        "c": "It switches motor direction automatically.",
+        "d": "It prevents motor overheating only."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "2. What is the working principle of a servo motor?",
+      "answers": {
+        "a": "It rotates continuously at constant speed.",
+        "b": "It moves to a specific angle based on pulse width.",
+        "c": "It vibrates using high frequency signals.",
+        "d": "It uses analog voltage for angle control."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "3. How does a stepper motor maintain precise control?",
+      "answers": {
+        "a": "By rotating freely without constraints.",
+        "b": "By using continuous analog voltage.",
+        "c": "By moving in fixed incremental steps.",
+        "d": "By adjusting pulses based on sound waves."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "4. Which example correctly matches a motor with a real-life IoT application?",
+      "answers": {
+        "a": "DC motor – smart curtains",
+        "b": "Servo motor – vibration alerts",
+        "c": "Stepper motor – table fan",
+        "d": "Vibration motor – robotic arm joints"
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "5. What happens if a wrong pulse sequence is given to a stepper motor?",
+      "answers": {
+        "a": "It rotates smoothly but faster.",
+        "b": "It may skip steps or rotate incorrectly.",
+        "c": "It stops working permanently.",
+        "d": "It behaves like a DC motor."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "6. How do DC motor and servo motor differ in control?",
+      "answers": {
+        "a": "Both use angle-based control.",
+        "b": "DC motor uses PWM for speed, servo uses PWM for position.",
+        "c": "Both use serial data for control.",
+        "d": "Servo motors require no PWM."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "7. Why can’t a typical servo motor rotate full 360°?",
+      "answers": {
+        "a": "Because its body is too small.",
+        "b": "Because an internal stop limits rotation.",
+        "c": "Because it has only two wires.",
+        "d": "Because it uses a battery."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "8. How can the direction of a DC motor be reversed in simulation?",
+      "answers": {
+        "a": "By changing PWM duty cycle only.",
+        "b": "By reversing power supply polarity via H-bridge.",
+        "c": "By reducing motor speed to zero.",
+        "d": "By enabling analogRead pins."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "9. Why are stepper motors commonly used in CNC machines?",
+      "answers": {
+        "a": "Because they rotate freely at high speeds.",
+        "b": "Because they provide precise step-by-step movement.",
+        "c": "Because they require no driver circuits.",
+        "d": "Because they consume very low power."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "10. What is the role of driver circuits in motor control?",
+      "answers": {
+        "a": "They reduce motor voltage to zero.",
+        "b": "They deliver high current safely from microcontrollers.",
+        "c": "They replace PWM functions entirely.",
+        "d": "They measure motor temperature only."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    }
+  ]
+}

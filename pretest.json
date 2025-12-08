@@ -1,0 +1,115 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. What type of signal controls the speed of a DC motor?",
+      "answers": {
+        "a": "Digital signal",
+        "b": "PWM signal",
+        "c": "Analog input only",
+        "d": "Serial signal"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "2. Servo motors are generally controlled using which type of signal?",
+      "answers": {
+        "a": "Analog signal",
+        "b": "PWM with specific pulse width",
+        "c": "Digital HIGH/LOW",
+        "d": "I2C signal"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "3. A stepper motor moves in small fixed ___?",
+      "answers": {
+        "a": "Speeds",
+        "b": "Steps",
+        "c": "Rotations",
+        "d": "Cycles"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "4. Which Arduino library is used for servo motors?",
+      "answers": {
+        "a": "Stepper.h",
+        "b": "MotorDriver.h",
+        "c": "Servo.h",
+        "d": "PWMControl.h"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "5. What does PWM stand for?",
+      "answers": {
+        "a": "Pulse Width Motor",
+        "b": "Power Wave Modulation",
+        "c": "Pulse Width Modulation",
+        "d": "Periodic Wave Management"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "6. DC motor movement is __-directional by nature.",
+      "answers": {
+        "a": "Bi-directional",
+        "b": "Uni-directional",
+        "c": "Multi-directional",
+        "d": "Non-directional"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "7. A stepper motor typically requires how many control pins?",
+      "answers": {
+        "a": "1",
+        "b": "2",
+        "c": "4",
+        "d": "6"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "8. Which motor is most suitable for precise angular control?",
+      "answers": {
+        "a": "DC motor",
+        "b": "Servo motor",
+        "c": "Brushless motor",
+        "d": "Universal motor"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "9. Which motor moves in discrete steps?",
+      "answers": {
+        "a": "DC motor",
+        "b": "Servo motor",
+        "c": "Stepper motor",
+        "d": "Vibration motor"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "10. Which motor is commonly used in robotic arms?",
+      "answers": {
+        "a": "Vibration motor",
+        "b": "Stepper motor",
+        "c": "DC cooling motor",
+        "d": "Induction motor"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    }
+  ]
+}
