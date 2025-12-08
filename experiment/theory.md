@@ -2,8 +2,6 @@ Motors are essential output actuators used in embedded systems and robotics to p
 
 In this experiment, we simulate the working of **DC motors, servo motors, and stepper motors** in a virtual lab environment, enabling safe and easy observation of motor behavior without requiring physical hardware.
 
----
-
 ## DC Motor
 
 A DC Motor converts electrical energy into rotational mechanical motion.  
@@ -29,8 +27,6 @@ It is commonly used for **continuous rotation** applications.
 - Wheels  
 - Conveyor belts  
 
----
-
 ## Servo Motor
 
 A Servo Motor provides **precise angular control** and is used wherever controlled rotation is required.
@@ -55,8 +51,6 @@ A Servo Motor provides **precise angular control** and is used wherever controll
 - Pan-tilt camera systems  
 - RC vehicles  
 - Precision control mechanisms  
-
----
 
 ## Stepper Motor
 
