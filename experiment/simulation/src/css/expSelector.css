@@ -101,7 +101,7 @@ h1{
   .nofled {
     height: 80vh;
     width: 100vw;
-    margin-top: 10px;
+    margin-top: 90px;
   }
   .nofledHead {
     width: 100%;
@@ -113,7 +113,6 @@ h1{
   }
   .nofledBoxContainer {
     width: 100%;
-    margin-top: -19px;
     height: 50vh;
     display: flex;
     flex-direction: column;
@@ -123,7 +122,7 @@ h1{
   .leds {
     background-color: rgb(46, 64, 92, 0.9);
     color: white;
-    height: 2.5rem;
+    height: 2.2rem;
     width: 60%;
     text-decoration: none;
     margin: 10px 0;
