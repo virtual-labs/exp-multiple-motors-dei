@@ -1,16 +1,25 @@
 let image_tracker = "off";
+
 function changePower() {
   let image = document.getElementById("ifimg");
+  const pushButton = document.getElementById("pushbutton");
+  const startBtn = document.getElementById("startBtn");
+  
   if (image_tracker == "off") {
     image.src = "./src/images/dc_on.gif";
-    document.getElementById("pushbuttonPower").innerHTML = "Stop Simulation";
-    document.getElementById("pushbuttonPower").style.backgroundColor = "red";
+    startBtn.innerHTML = '<span class="play-icon">⏹</span> Stop Simulation';
+    startBtn.className = "control-btn stop-btn";
     image_tracker = "On";
+    if (pushButton) pushButton.style.display = "inline-block";
   } else {
     image.src = "./src/images/dc_off.png";
-    document.getElementById("pushbuttonPower").innerHTML = "Start Simulation";
-    document.getElementById("pushbuttonPower").style.backgroundColor =
-      "#009C4E";
+    startBtn.innerHTML = '<span class="play-icon">▶</span> Start Simulation';
+    startBtn.className = "control-btn start-btn";
     image_tracker = "off";
+    if (pushButton) pushButton.style.display = "none";
   }
+}
+
+function changeImage() {
+  // Placeholder for button interaction if needed
 }

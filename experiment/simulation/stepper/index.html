@@ -9,39 +9,65 @@
       href="https://www.vlab.co.in/images/logo.jpg"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/monokai.min.css" />
     <link rel="stylesheet" type="text/css" href="src/css/style.css" />
   </head>
   <body>
-    <header>
-      <div class="exp-changer">
-        <div class="exp-changer-heading">
-          <p class="p-head">IOT Virtual Lab</p>
-        </div>
-      </div>
-    </header>
-
-
-
     <div class="container">
       <div class="if-vid">
-        <p class="p-head">Interfacing of Arduino with Stepper Motor :</p>
+        <p class="p-head">Interfacing Stepper Motor with Arduino:</p>
         <div class="interfacing">
-          <img
-            id="ifimg"
-            src="./src/images/stepper_off.png"
-            alt="interfacing"
-          />
+          <img id="ifimg" src="./src/images/stepper_off.png" alt="interfacing" />
           <button id="pushbuttonLeft" onclick="changeImageLeft();"></button>
-          <!-- <button id="pushbuttonRight" onclick="changeImageRight();"></button> -->
         </div>
-        <!--   -->
       </div>
-      <div class="separator"></div>
-      <div class="code">
-        <div class="code-head"><p class="p-head">ARDUINO CODE</p></div>
-        <div>
-          <form action="" method="POST">
+
+      <div class="right-panel">
+        <div class="instruction-box">
+          <h3 class="box-title">Instructions</h3>
+          <div class="instruction-content">
+            <div class="instruction-section">
+              <h4>Objective:</h4>
+              <p>Learn how to control a stepper motor using Arduino to achieve precise rotational movements step by step.</p>
+            </div>
+
+            <div class="instruction-section">
+              <h4>Steps to Perform:</h4>
+              <ol>
+                <li>Click <strong>"Start Simulation"</strong> to power up the Arduino circuit</li>
+                <li>The stepper motor will begin rotating continuously</li>
+                <li>Motor completes one full revolution (200 steps) per cycle</li>
+                <li>Speed is set to 90 RPM (Rotations Per Minute)</li>
+                <li>The motor repeats the rotation pattern in loop()</li>
+              </ol>
+            </div>
+
+            <div class="instruction-section">
+              <h4>Key Concepts:</h4>
+              <ul>
+                <li><strong>Stepper Motor:</strong> Motor that rotates in discrete steps for precise positioning</li>
+                <li><strong>Stepper Library:</strong> Arduino library for controlling stepper motors</li>
+                <li><strong>Steps Per Revolution:</strong> 200 steps = one complete 360° rotation</li>
+                <li><strong>Pin Configuration:</strong> Uses pins 8, 9, 10, 11 for motor driver control</li>
+                <li><strong>setSpeed():</strong> Sets rotation speed in RPM (90 rotations/minute)</li>
+                <li><strong>step():</strong> Moves motor by specified number of steps (positive = clockwise)</li>
+                <li><strong>Precision Control:</strong> Each step provides ~1.8° rotation (360°/200)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <div class="code-box-header">
+            <span class="box-title">Arduino Code - main.ino</span>
+            <div class="code-actions">
+              <button class="control-btn start-btn" id="startBtn" onclick="changePower();">
+                <span class="play-icon">▶</span> Start Simulation
+              </button>
+            </div>
+          </div>
+          <div class="code-content">
             <textarea id="arduinoCode" readonly>
 #include <Stepper.h>
 
@@ -59,28 +85,25 @@ void loop() {
  
 }
             </textarea>
-          </form>
-        </div>
-        <div class="code-head startStop">
-          <h2 id="pushbuttonPower" onclick="changePower();">
-            Start Simulation
-          </h2>
+          </div>
         </div>
       </div>
     </div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.js"></script>
     <script>
-      // Initialize CodeMirror editor in read-only mode with an increased height
       var editor = CodeMirror.fromTextArea(document.getElementById("arduinoCode"), {
-            mode: "text/x-c++src", // For C++/Arduino syntax highlighting
-            lineNumbers: true, // Show line numbers
-            matchBrackets: true, // Highlight matching brackets
-            theme: "default", // You can change the theme
-            readOnly: "nocursor", // Make the editor read-only
-            tabSize: 4,
-            indentUnit: 4,
-        });
+        mode: "text/x-c++src",
+        lineNumbers: true,
+        matchBrackets: true,
+        theme: "monokai",
+        readOnly: "nocursor",
+        tabSize: 2,
+        indentUnit: 2,
+        lineWrapping: false,
+        scrollbarStyle: "native"
+      });
     </script>
     <script type="text/javascript" src="src/js/main.js"></script>
   </body>
