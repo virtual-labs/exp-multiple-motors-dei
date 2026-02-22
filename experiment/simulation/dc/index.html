@@ -19,6 +19,16 @@
         <p class="p-head">Interfacing DC Motor with Arduino:</p>
         <div class="interfacing">
           <img id="ifimg" src="./src/images/dc_off.png" alt="interfacing" />
+          <div class="motor-indicator" id="motorIndicator">
+            <div class="motor-rotator">
+              <div class="motor-shaft"></div>
+              <div class="speed-lines">
+                <div class="speed-line"></div>
+                <div class="speed-line"></div>
+                <div class="speed-line"></div>
+              </div>
+            </div>
+          </div>
           <button id="pushbutton" onclick="changeImage();"></button>
         </div>
       </div>
@@ -35,10 +45,13 @@
             <div class="instruction-section">
               <h4>Steps to Perform:</h4>
               <ol>
-                <li>Click <strong>"Start Simulation"</strong> to power up the Arduino circuit</li>
-                <li>The DC motor will start rotating at a controlled speed</li>
-                <li>The motor runs continuously using PWM signal with value 20</li>
-                <li>This creates a low-speed rotation of the motor</li>
+                <li>Look at the <strong>Arduino Code</strong> in the code editor below</li>
+                <li>Find <strong>Line 8</strong>: <code>analogWrite(11, 20);</code> - this controls motor speed</li>
+                <li>Click on line 8 and change the value to any number between <strong>0-255</strong></li>
+                <li>Click <strong>"Apply Code"</strong> button to update the motor speed</li>
+                <li>Click <strong>"Start Simulation"</strong> to power up and see the motor rotate</li>
+                <li>Observe how the motor shaft rotates at the speed you set</li>
+                <li>Try different values: Higher = faster, Lower = slower, 0 = stopped</li>
                 <li>Click "Stop Simulation" to turn off the motor</li>
               </ol>
             </div>
@@ -49,9 +62,10 @@
                 <li><strong>DC Motor:</strong> Converts electrical energy to mechanical rotation</li>
                 <li><strong>PWM Control:</strong> Uses analogWrite() to control motor speed (0-255)</li>
                 <li><strong>Pin 11:</strong> PWM-enabled pin connected to motor driver circuit</li>
-                <li><strong>Speed Value:</strong> 20 out of 255 produces slow rotation (~8% speed)</li>
+                <li><strong>Speed Range:</strong> 0 = stopped, 255 = maximum speed</li>
+                <li><strong>Editable Code:</strong> Modify line 8 directly to change motor behavior</li>
                 <li><strong>Motor Driver:</strong> Circuit amplifies Arduino signal to drive motor</li>
-                <li><strong>Continuous Operation:</strong> Motor runs in loop() without delays</li>
+                <li><strong>Real-time Testing:</strong> Edit code and apply changes to see immediate results</li>
               </ul>
             </div>
           </div>
@@ -61,13 +75,16 @@
           <div class="code-box-header">
             <span class="box-title">Arduino Code - main.ino</span>
             <div class="code-actions">
+              <button class="control-btn apply-code-btn" id="applyCodeBtn" onclick="applyCodeChanges();">
+                <span class="apply-icon">✓</span> Apply Code
+              </button>
               <button class="control-btn start-btn" id="startBtn" onclick="changePower();">
                 <span class="play-icon">▶</span> Start Simulation
               </button>
             </div>
           </div>
           <div class="code-content">
-            <textarea id="arduinoCode" readonly>
+            <textarea id="arduinoCode">
 void setup()
 {
   pinMode(11, OUTPUT);
@@ -75,9 +92,13 @@ void setup()
 
 void loop()
 {
-   analogWrite(11,20);
+   analogWrite(11, 20);
 }
             </textarea>
+          </div>
+          <div class="speed-status-bar">
+            <span class="status-text">Current PWM: <strong id="speedValue">20</strong> <span id="speedPercentage">(8%)</span></span>
+            <span class="status-hint">💡 Edit line 8 to change motor speed (0-255)</span>
           </div>
         </div>
       </div>
@@ -85,19 +106,12 @@ void loop()
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.js"></script>
+    <script type="text/javascript" src="src/js/main.js"></script>
     <script>
-      var editor = CodeMirror.fromTextArea(document.getElementById("arduinoCode"), {
-        mode: "text/x-c++src",
-        lineNumbers: true,
-        matchBrackets: true,
-        theme: "monokai",
-        readOnly: "nocursor",
-        tabSize: 2,
-        indentUnit: 2,
-        lineWrapping: false,
-        scrollbarStyle: "native"
+      // Initialize CodeMirror editor after DOM is loaded
+      window.addEventListener('DOMContentLoaded', function() {
+        initializeEditor();
       });
     </script>
-    <script type="text/javascript" src="src/js/main.js"></script>
   </body>
 </html>
