@@ -10,7 +10,7 @@ body {
   margin: 0;
   overflow: hidden;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #F4F5F6;
+  background-color: #ffffff;
 }
 
 .container {
@@ -21,16 +21,18 @@ body {
   bottom: 0;
   display: flex;
   flex-direction: row;
-  background-color: #F4F5F6;
+  background-color: #ffffff;
 }
 
 .if-vid {
   flex: 1;
-  padding: 20px;
-  overflow: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #ffffff;
+  padding: 40px;
 }
 
 .p-head {
@@ -41,22 +43,62 @@ body {
   font-size: 18px;
   color: #333;
   align-self: flex-start;
- 
+  margin-top: -150px;
 }
 
-.interfacing {
+.simulation-stage {
   position: relative;
-  display: inline-block;
   width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: 600px;
+  /* Adjust based on your preferred large-screen size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.interfacing img {
-  width: 90%;
+#ifimg {
+  width: 100%;
   height: auto;
   display: block;
-  margin-top: 60px;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+}
+
+.arduino-label {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: #888;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+.arduino-label.running {
+  color: #38bdf8;
+}
+
+#motorSVG {
+  position: absolute;
+  z-index: 5;
+  /* Size is now relative to the image stage width */
+  width: 45%;
+  height: auto;
+  aspect-ratio: 1/1;
+
+  /* Precise percentage coordinates to pin it to a spot on the GIF */
+  right: 15%;
+  top: 15%;
+
+  display: block;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #0d1b35 0%, #060a14 100%);
+  border: 1px solid #2d4a7a;
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.25), 0 10px 40px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
 }
 
 #pushbuttonLeft {
@@ -154,9 +196,19 @@ body {
 
 .code-box {
   flex: 0 0 50%;
+  background-color: #1e1e1e;
+  border: 1px solid #333;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   overflow: hidden;
+  position: relative;
+  transition: box-shadow 0.4s ease;
+}
+
+.code-box.running-glow {
+  box-shadow: 0 0 30px rgba(45, 164, 78, 0.15), 0 10px 40px rgba(0, 0, 0, 0.5);
+  border-color: rgba(45, 164, 78, 0.3);
 }
 
 .code-box-header {
@@ -176,40 +228,76 @@ body {
   font-size: 14px;
 }
 
-.code-actions {
+.window-dots {
   display: flex;
-  gap: 10px;
+  gap: 6px;
+  margin-right: 8px;
+}
+
+.window-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot.red {
+  background: #ff5f56;
+}
+
+.dot.yellow {
+  background: #ffbd2e;
+}
+
+.dot.green {
+  background: #27c93f;
+}
+
+.code-box-header .box-title {
+  color: #888;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  margin-right: auto;
+  letter-spacing: 1px;
+  text-transform: lowercase;
 }
 
 .control-btn {
-  padding: 6px 14px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 3px;
-  font-size: 12px;
-  font-weight: 600;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 6px;
-  transition: all 0.3s ease;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.3px;
 }
 
 .start-btn {
-  background-color: #4caf50;
+  background-color: #2da44e;
   color: white;
+  box-shadow: 0 4px 12px rgba(45, 164, 78, 0.2);
 }
 
 .start-btn:hover {
-  background-color: #45a049;
+  background-color: #2c974b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(45, 164, 78, 0.3);
 }
 
 .stop-btn {
-  background-color: #f44336;
+  background-color: #cf222e;
   color: white;
+  box-shadow: 0 4px 12px rgba(207, 34, 46, 0.2);
 }
 
 .stop-btn:hover {
-  background-color: #da190b;
+  background-color: #a40e26;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(207, 34, 46, 0.3);
 }
 
 .play-icon {
@@ -234,7 +322,7 @@ body {
 .code-content {
   flex: 1;
   overflow: hidden;
-  background-color: #272822;
+  background-color: #1e1e1e;
 }
 
 .code-content .CodeMirror {
@@ -301,6 +389,274 @@ body {
   display: none;
 }
 
+/* ── Virtual Stepper Motor SVG ─────────────────────────── */
+
+#motorSVG {
+  position: absolute;
+  z-index: 5;
+  width: 155px;
+  height: 155px;
+  /* Default position on the circuit */
+  right: 14.5%;
+  top: 17.5%;
+  transform: translateY(-50%);
+
+  display: block;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #0d1b35 0%, #060a14 100%);
+  border: 1px solid #2d4a7a;
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.25), 0 10px 40px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Readout row */
+.motor-readouts {
+  display: flex;
+  gap: 10px;
+  width: 90%;
+  max-width: 340px;
+}
+
+.readout-card {
+  flex: 1;
+  background: #1a2035;
+  border: 1px solid #1e2d4a;
+  border-radius: 8px;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.readout-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.readout-value {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+/* Controls row */
+.motor-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 90%;
+  max-width: 340px;
+  background: #1a2035;
+  border: 1px solid #1e2d4a;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.mc-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1 1 120px;
+}
+
+.mc-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #4a5568;
+}
+
+.mc-input {
+  background: #0d1321;
+  border: 1px solid #2d4a7a;
+  border-radius: 5px;
+  color: #e2e8f0;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 5px 8px;
+  outline: none;
+  width: 100%;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.mc-input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.18);
+}
+
+.mc-input::-webkit-inner-spin-button,
+.mc-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.mc-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.mc-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 3px;
+  background: #0d1321;
+  border: 1px solid #2d4a7a;
+  outline: none;
+  cursor: pointer;
+}
+
+.mc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2px solid #0d1321;
+}
+
+.mc-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2px solid #0d1321;
+}
+
+.mc-slider-val {
+  font-size: 12px;
+  font-family: 'Consolas', 'Courier New', monospace;
+  color: #94a3b8;
+  min-width: 28px;
+  text-align: right;
+}
+
+/* Direction toggle */
+.dir-toggle {
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #2d4a7a;
+}
+
+.dir-btn {
+  flex: 1;
+  background: #0d1321;
+  border: none;
+  color: #4a5568;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 6px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  letter-spacing: 0.4px;
+}
+
+.dir-btn.active {
+  background: #38bdf8;
+  color: #0d1321;
+}
+
+.dir-btn:not(.active):hover {
+  background: #1e2d4a;
+  color: #e2e8f0;
+}
+
+/* Action buttons */
+.mc-actions {
+  flex-direction: row !important;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.mc-btn {
+  flex: 1;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+
+.mc-rotate {
+  background: #34d399;
+  color: #052e16;
+}
+
+.mc-rotate:hover:not(:disabled) {
+  background: #4ade80;
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.4);
+}
+
+.mc-rotate:disabled {
+  background: #2d3748;
+  color: #4a5568;
+  cursor: not-allowed;
+}
+
+.mc-reset {
+  background: #1e2d4a;
+  color: #94a3b8;
+  border: 1px solid #2d4a7a;
+}
+
+.mc-reset:hover {
+  background: #2d3a5a;
+  color: #f87171;
+  border-color: #f87171;
+}
+
+/* Progress bar */
+.motor-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 90%;
+  max-width: 340px;
+}
+
+.mp-track {
+  flex: 1;
+  height: 5px;
+  background: #1a2035;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #1e2d4a;
+}
+
+.mp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+  border-radius: 3px;
+  transition: width 0.05s linear;
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
+}
+
+.mp-label {
+  font-size: 11px;
+  font-family: 'Consolas', 'Courier New', monospace;
+  color: #38bdf8;
+  min-width: 30px;
+  text-align: right;
+}
+
+/* ── Responsive ────────────────────────────────────────── */
 @media screen and (max-width: 1024px) {
   .container {
     flex-direction: column;
@@ -348,10 +704,6 @@ body {
     font-size: 14px;
     margin-left: 0;
     margin-bottom: 10px;
-  }
-
-  .interfacing {
-    max-width: 100%;
   }
 
   .right-panel {
@@ -466,4 +818,81 @@ body {
   .code-content .CodeMirror {
     font-size: 10px;
   }
+}
+
+
+
+/* ── Error Msg ── */
+.error-msg {
+  background: #fef2f2;
+  border-left: 4px solid #ef4444;
+  color: #991b1b;
+  font-size: 12px;
+  padding: 10px 14px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  max-height: 100px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  line-height: 1.6;
+}
+
+/* ── Code Content (CodeMirror) ── */
+.code-content {
+  flex: 1;
+  overflow: hidden;
+  background: #272822;
+  /* Monokai base */
+}
+
+#arduinoCode {
+  display: none;
+}
+
+/* ── Editable lines (indices 0 and 1) ── */
+.editable-line {
+  background: rgba(251, 191, 36, 0.13) !important;
+  border-left: 3px solid #fbbf24 !important;
+}
+
+/* ── Read-only lines (all other lines) ── */
+.readonly-line {
+  background: rgba(15, 23, 42, 0.35) !important;
+  opacity: 0.55;
+}
+
+.code-content .CodeMirror {
+  width: 100%;
+  height: 100%;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.code-content .CodeMirror-scroll {
+  overflow-y: auto !important;
+  overflow-x: auto !important;
+  min-height: 100%;
+}
+
+.code-content .CodeMirror-scrollbar-filler {
+  background: #272822;
+}
+
+/* Custom Scrollbars for CodeMirror */
+.code-content .CodeMirror-hscrollbar::-webkit-scrollbar,
+.code-content .CodeMirror-vscrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.code-content .CodeMirror-hscrollbar::-webkit-scrollbar-track,
+.code-content .CodeMirror-vscrollbar::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+.code-content .CodeMirror-hscrollbar::-webkit-scrollbar-thumb,
+.code-content .CodeMirror-vscrollbar::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 5px;
 }
