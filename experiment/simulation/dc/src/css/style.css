@@ -58,8 +58,168 @@ body {
   display: block;
 }
 
+.motor-indicator {
+  position: absolute;
+  top: 16%;
+  left: 52.5%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  display: block;
+  animation: rotateMotor 2s linear infinite;
+  animation-play-state: paused;
+}
+
+.motor-indicator.rotating {
+  animation-play-state: running;
+}
+
+@keyframes rotateMotor {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.motor-shaft {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, #FF6B6B 0%, #C92A2A 100%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.6),
+              inset 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 3px solid #8B0000;
+}
+
+.motor-shaft::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 100%;
+  background: linear-gradient(90deg, #8B0000 0%, #FF6B6B 50%, #8B0000 100%);
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.motor-shaft::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 12px;
+  background: linear-gradient(0deg, #8B0000 0%, #FF6B6B 50%, #8B0000 100%);
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.speed-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.speed-line {
+  position: absolute;
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(180deg, #FFD93D 0%, transparent 100%);
+  border-radius: 2px;
+  top: 0;
+  left: 50%;
+  transform-origin: center 40px;
+  opacity: 0.8;
+}
+
+.speed-line:nth-child(1) {
+  transform: translateX(-50%) rotate(0deg);
+}
+
+.speed-line:nth-child(2) {
+  transform: translateX(-50%) rotate(120deg);
+}
+
+.speed-line:nth-child(3) {
+  transform: translateX(-50%) rotate(240deg);
+}
+
 #pushbutton {
   display: none;
+}
+
+.apply-code-btn {
+  background-color: #667eea;
+  color: white;
+  margin-right: 8px;
+}
+
+.apply-code-btn:hover {
+  background-color: #764ba2;
+}
+
+.apply-code-btn.code-modified {
+  background-color: #ff9800;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 152, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(255, 152, 0, 0);
+  }
+}
+
+.speed-status-bar {
+  background-color: #2d2d2d;
+  border-top: 2px solid #667eea;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.status-text {
+  font-size: 13px;
+  color: #a0a0a0;
+}
+
+.status-text strong {
+  color: #667eea;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 4px;
+}
+
+.status-text #speedPercentage {
+  color: #888;
+  font-size: 12px;
+}
+
+.status-hint {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+}
+
+.CodeMirror .editable-line {
+  background-color: rgba(102, 126, 234, 0.15) !important;
+  border-left: 3px solid #667eea;
+}
+
+.apply-icon {
+  font-size: 12px;
 }
 
 .right-panel {
@@ -353,6 +513,50 @@ body {
     max-width: 100%;
   }
 
+  .speed-control-panel {
+    max-width: 100%;
+    margin: 15px auto 0;
+  }
+
+  .speed-control-header {
+    padding: 12px 15px;
+  }
+
+  .speed-control-header h3 {
+    font-size: 14px;
+  }
+
+  .speed-display {
+    font-size: 12px;
+  }
+
+  .speed-value {
+    font-size: 16px;
+  }
+
+  .speed-control-content {
+    padding: 15px;
+  }
+
+  .speed-note {
+    font-size: 12px;
+  }
+
+  .motor-indicator {
+    width: 60px;
+    height: 60px;
+  }
+
+  .motor-shaft {
+    width: 45px;
+    height: 45px;
+  }
+
+  .speed-line {
+    height: 15px;
+    transform-origin: center 30px;
+  }
+
   .right-panel {
     width: 100%;
     height: 55%;
@@ -411,6 +615,45 @@ body {
   .p-head {
     font-size: 12px;
     margin-bottom: 8px;
+  }
+
+  .speed-status-bar {
+    padding: 8px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .status-text {
+    font-size: 12px;
+  }
+
+  .status-hint {
+    font-size: 11px;
+  }
+
+  .motor-indicator {
+    width: 50px;
+    height: 50px;
+  }
+
+  .motor-shaft {
+    width: 38px;
+    height: 38px;
+  }
+
+  .motor-shaft::before {
+    width: 9px;
+  }
+
+  .motor-shaft::after {
+    height: 9px;
+  }
+
+  .speed-line {
+    width: 3px;
+    height: 12px;
+    transform-origin: center 25px;
   }
 
   .right-panel {
