@@ -1,125 +1,126 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Virtual IoT Lab DEI</title>
-    <link
-      rel="icon"
-      href="https://www.vlab.co.in/images/logo.jpg"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/monokai.min.css" />
-    <link rel="stylesheet" type="text/css" href="src/css/style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="if-vid">
-        <p class="p-head">Interfacing Servo Motor with Arduino:</p>
-        <div class="interfacing">
-          <img id="ifimg" src="./src/images/servo_off.png" alt="interfacing" />
-          <button id="pushbutton" onclick="changeImage();"></button>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Virtual IoT Lab DEI – Servo Motor</title>
+  <link rel="icon" href="https://www.vlab.co.in/images/logo.jpg" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/monokai.min.css" />
+  <link rel="stylesheet" type="text/css" href="src/css/style.css" />
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- ===== LEFT: Servo Visualiser ===== -->
+    <div class="if-vid">
+      <p class="p-head">Interfacing Servo Motor with Arduino:</p>
+
+      <div class="servo-wrapper">
+        <svg id="servoSVG" viewBox="20 5 465 480" xmlns="http://www.w3.org/2000/svg"></svg>
+
+        <!-- <div class="angle-badge"> -->
+        <!-- <span id="liveAngle">0</span><span class="deg-sym">°</span>
+          <span class="angle-label">Current Angle</span> -->
+        <!-- </div> -->
+      </div>
+    </div>
+
+    <!-- ===== RIGHT: Instructions + Code ===== -->
+    <div class="right-panel">
+
+      <!-- Instructions -->
+      <div class="instruction-box">
+        <h3 class="box-title">Instructions</h3>
+        <div class="instruction-content">
+          <div class="instruction-section">
+            <h4>Objective:</h4>
+            <p>Learn how to control a servo motor using Arduino to create precise angular movements between 0 and 180
+              degrees.</p>
+          </div>
+          <div class="instruction-section">
+            <h4>Steps to Perform:</h4>
+            <ol>
+              <li>In the Arduino code, modify the <strong>angle</strong> value on line 1 (0–180)</li>
+              <li>Click <strong>"Run Code"</strong> to start the simulation</li>
+              <li>The servo motor will sweep from <strong>0°</strong> to your specified angle and back continuously</li>
+              <li>You can change the angle value and click <strong>"Run Code"</strong> again to update</li>
+              <li>Click <strong>"Stop"</strong> to halt the servo at any time</li>
+              <li>Valid range: <strong>0°</strong> (far left) to <strong>180°</strong> (far right)</li>
+            </ol>
+          </div>
+          <div class="instruction-section">
+            <h4>Key Concepts:</h4>
+            <ul>
+              <li><strong>Servo Motor:</strong> Motor that can rotate to precise angles (0–180°)</li>
+              <li><strong>Servo Library:</strong> Arduino library for easy servo control with <strong>Servo.h</strong>
+              </li>
+              <li><strong>Pin 11:</strong> Digital pin connected to servo control signal wire</li>
+              <li><strong>servo.attach():</strong> Connects servo object to specified pin in setup()</li>
+              <li><strong>servo.write(angle):</strong> Positions servo to specified angle in degrees</li>
+              <li><strong>Angle Control:</strong> Change the angle parameter (0–180) to control position</li>
+              <li><strong>Real-time Control:</strong> Run your code to instantly see servo movement</li>
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div class="right-panel">
-        <div class="instruction-box">
-          <h3 class="box-title">Instructions</h3>
-          <div class="instruction-content">
-            <div class="instruction-section">
-              <h4>Objective:</h4>
-              <p>Learn how to control a servo motor using Arduino to create precise angular movements between 0 and 180 degrees.</p>
-            </div>
-
-            <div class="instruction-section">
-              <h4>Steps to Perform:</h4>
-              <ol>
-                <li>Click <strong>"Start Simulation"</strong> to power up the Arduino circuit</li>
-                <li>The servo motor will begin sweeping motion automatically</li>
-                <li>Servo rotates from 0° to 180° in 1-degree increments</li>
-                <li>After reaching 180°, it reverses and sweeps back to 0°</li>
-                <li>Each movement has a 100ms delay for smooth motion</li>
-                <li>The sweep cycle repeats continuously</li>
-              </ol>
-            </div>
-
-            <div class="instruction-section">
-              <h4>Key Concepts:</h4>
-              <ul>
-                <li><strong>Servo Motor:</strong> Motor that can rotate to precise angles (0-180°)</li>
-                <li><strong>Servo Library:</strong> Arduino library for easy servo control with Servo.h</li>
-                <li><strong>Pin 9:</strong> Digital pin connected to servo control signal wire</li>
-                <li><strong>servo.attach():</strong> Connects servo object to specified pin in setup()</li>
-                <li><strong>servo.write(angle):</strong> Positions servo to specified angle in degrees</li>
-                <li><strong>Sweep Motion:</strong> For loops create smooth back-and-forth movement</li>
-                <li><strong>Delay Control:</strong> 100ms delay between steps creates visible motion</li>
-              </ul>
-            </div>
+      <!-- Code Editor -->
+      <div class="code-box">
+        <div class="code-box-header">
+          <span class="box-title">Arduino Code — main.ino</span>
+          <div class="code-actions">
+            <!-- <div class="speed-wrap">
+              <label class="speed-lbl">Speed</label>
+              <input id="speedSlider" type="range" min="1" max="100" value="10" class="speed-slider" />
+              <span id="speedLabel" class="speed-val">10x</span>
+            </div> -->
+            <button class="control-btn start-btn" id="startBtn" onclick="changePower();">
+              <span class="play-icon">▶</span> Run Code
+            </button>
           </div>
         </div>
 
-        <div class="code-box">
-          <div class="code-box-header">
-            <span class="box-title">Arduino Code - main.ino</span>
-            <div class="code-actions">
-              <button class="control-btn start-btn" id="startBtn" onclick="changePower();">
-                <span class="play-icon">▶</span> Start Simulation
-              </button>
-            </div>
-          </div>
-          <div class="code-content">
-            <textarea id="arduinoCode" readonly>
-#include <Servo.h>
-  
-int servoPin = 9;
- 
-Servo servo;  
- 
-int angle = 0;   // servo position in degrees
- 
+        <div id="errorMsg" class="error-msg" style="display:none;"></div>
+
+        <div class="code-content">
+          <textarea id="arduinoCode">int angle = 90;
+
+#include &lt;Servo.h&gt;
+
+int servoPin = 11;
+int pos = 0;
+Servo servo;
+
 void setup()
 {
   servo.attach(servoPin);
 }
- 
- 
+
 void loop()
 {
-  // scan from 0 to 180 degrees
-  for(angle = 0; angle < 180; angle++)  
-  {                                  
-    servo.write(angle);              
-    delay(100);                  
+  for(pos = 0; pos &lt;= angle; pos++)
+  {
+    servo.write(pos);
+    delay(15);
   }
-  // now scan back from 180 to 0 degrees
-  for(angle = 180; angle > 0; angle--)    
-  {                                
-    servo.write(angle);          
-    delay(100);      
+  for(pos = angle; pos &gt;= 0; pos--)
+  {
+    servo.write(pos);
+    delay(15);
   }
-} 
-            </textarea>
-          </div>
+}</textarea>
         </div>
       </div>
-    </div>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.js"></script>
-    <script>
-      var editor = CodeMirror.fromTextArea(document.getElementById("arduinoCode"), {
-        mode: "text/x-c++src",
-        lineNumbers: true,
-        matchBrackets: true,
-        theme: "monokai",
-        readOnly: "nocursor",
-        tabSize: 2,
-        indentUnit: 2,
-        lineWrapping: false,
-        scrollbarStyle: "native"
-      });
-    </script>
-    <script type="text/javascript" src="src/js/main.js"></script>
-  </body>
+
+    </div><!-- end right-panel -->
+  </div><!-- end container -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.js"></script>
+  <script type="text/javascript" src="src/js/main.js"></script>
+</body>
+
 </html>
