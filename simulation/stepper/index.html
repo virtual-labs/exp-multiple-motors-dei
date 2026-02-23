@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Virtual IoT Lab DEI</title>
+  <link rel="icon" href="https://www.vlab.co.in/images/logo.jpg" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/monokai.min.css" />
+  <link rel="stylesheet" type="text/css" href="src/css/style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="if-vid">
+      <p class="p-head">Interfacing Stepper Motor with Arduino:</p>
+      <div class="simulation-stage">
+        <!-- Background Arduino Circuit -->
+
+        <img id="ifimg" src="./src/images/stepper_off.png" alt="Arduino stepper circuit" />
+        <!-- <div class="arduino-label" id="arduinoLabel">Arduino Uno — Idle</div> -->
+
+        <!-- Virtual Stepper Motor Overlay -->
+        <svg id="motorSVG" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <radialGradient id="statorGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#2a3a5c" />
+              <stop offset="100%" stop-color="#111827" />
+            </radialGradient>
+            <radialGradient id="rotorGrad" cx="40%" cy="35%" r="60%">
+              <stop offset="0%" stop-color="#4a5568" />
+              <stop offset="100%" stop-color="#1a202c" />
+            </radialGradient>
+            <radialGradient id="shaftGrad" cx="40%" cy="35%" r="60%">
+              <stop offset="0%" stop-color="#a0aec0" />
+              <stop offset="100%" stop-color="#4a5568" />
+            </radialGradient>
+          </defs>
+
+          <!-- Outer background ring -->
+          <circle cx="200" cy="200" r="198" fill="#0a0f1e" />
+          <!-- Stator body -->
+          <circle cx="200" cy="200" r="190" fill="url(#statorGrad)" stroke="#2d4a7a" stroke-width="3" />
+          <!-- Stator poles & coils (built by JS) -->
+          <g id="statorPoles"></g>
+          <g id="coilWindings"></g>
+          <!-- Air gap -->
+          <circle cx="200" cy="200" r="98" fill="none" stroke="#1a2744" stroke-width="3" />
+
+          <!-- Rotor (rotates) -->
+          <g id="rotorGroup" transform="rotate(0,200,200)">
+            <circle cx="200" cy="200" r="90" fill="url(#rotorGrad)" stroke="#3a4a6a" stroke-width="2" />
+            <g id="rotorTeeth"></g>
+            <!-- Direction arrow -->
+            <line x1="200" y1="200" x2="200" y2="118" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"
+              filter="url(#glow)" />
+            <polygon points="200,110 195,122 205,122" fill="#38bdf8" filter="url(#glow)" />
+            <!-- Inner detail rings -->
+            <circle cx="200" cy="200" r="60" fill="none" stroke="#2a3a5c" stroke-width="1.5" stroke-dasharray="4,4" />
+            <circle cx="200" cy="200" r="40" fill="none" stroke="#2a3a5c" stroke-width="1" />
+            <!-- Shaft -->
+            <circle cx="200" cy="200" r="18" fill="url(#shaftGrad)" stroke="#718096" stroke-width="1.5" />
+            <circle cx="200" cy="200" r="6" fill="#e2e8f0" />
+          </g>
+
+          <!-- Step tick marks -->
+          <g id="stepTicks" opacity="0.4"></g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="instruction-box">
+        <h3 class="box-title">Instructions</h3>
+        <div class="instruction-content">
+          <div class="instruction-section">
+            <h4>Objective:</h4>
+            <p>Understand the interfacing of a Stepper Motor with Arduino and learn to control its precision
+              movement using the Stepper library.</p>
+          </div>
+
+          <div class="instruction-section">
+            <h4>Steps to Perform:</h4>
+            <ol>
+              <li>Observe the <strong>Live Code Editor</strong> on the right. Modify the values of <code>steps</code>
+                and <code>speed</code>.</li>
+              <li>Set <strong>steps = 2048</strong> to achieve a full 360° rotation, or <strong>1024</strong> for a
+                half-turn.</li>
+              <li>Set <strong>speed = 15</strong> (standard RPM for geared stepper motors).</li>
+              <li>Click <strong>"Start Simulation"</strong> to deploy the code to the virtual Arduino.</li>
+              <li>Watch the motor's rotor and the pulsing electromagnetic coils in the visualization.</li>
+              <li>Click <strong>"Stop Simulation"</strong> to halt the motor and reset the Arduino to an idle state.
+              </li>
+            </ol>
+          </div>
+
+          <div class="instruction-section">
+            <h4>Key Concepts:</h4>
+            <ul>
+              <li><strong>Step Resolution:</strong> This motor requires 2048 steps for one full 360° circle (approx.
+                0.176° per step).</li>
+              <li><strong>RPM (Speed):</strong> Rotations Per Minute. High-resolution geared motors typically run
+                optimally between 10-20 RPM.</li>
+              <li><strong>Phase Sequencing:</strong> Arduino pins 8, 9, 10, and 11 pulse in a specific order to rotate
+                the internal magnetic rotor.</li>
+              <li><strong>Stepper Library:</strong> Arduino library for controlling stepper motors</li>
+              <li><strong>Pin Configuration:</strong> Uses pins 8, 9, 10, 11 for motor driver control</li>
+              <li><strong>setSpeed():</strong> Sets rotation speed in RPM</li>
+              <li><strong>step():</strong> Moves motor by specified number of steps (positive = clockwise)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-box-header">
+          <div class="window-dots">
+            <!-- <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span> -->
+          </div>
+          <span class="box-title">sketch_stepper.ino</span>
+
+          <div class="code-actions">
+            <button class="control-btn start-btn" id="startBtn" onclick="changePower();">
+              <span class="play-icon">▶</span> Start Simulation
+            </button>
+          </div>
+        </div>
+
+        <div id="errorMsg" class="error-msg" style="display:none;"></div>
+
+        <div class="code-content">
+          <textarea id="arduinoCode">int steps = 2048;
+int speed = 15;
+
+#include &lt;Stepper.h&gt;
+
+// 2048 steps = 1 full revolution
+Stepper myStepper(2048, 8, 9, 10, 11);
+
+void setup() {
+  myStepper.setSpeed(speed);
+}
+
+void loop() {
+  myStepper.step(steps);
+  delay(500);
+}</textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.js"></script>
+  <script type="text/javascript" src="src/js/main.js"></script>
+</body>
+
+</html>
